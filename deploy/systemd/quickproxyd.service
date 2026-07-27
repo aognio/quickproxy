@@ -1,0 +1,27 @@
+[Unit]
+Description=QuickProxy dynamic local HTTP reverse proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=quickproxy
+Group=quickproxy
+ExecStart=/usr/local/bin/quickproxyd --config /etc/quickproxy/server-config.toml
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/quickproxy
+ReadOnlyPaths=/etc/quickproxy
+CapabilityBoundingSet=
+AmbientCapabilities=
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target

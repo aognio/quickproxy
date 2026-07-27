@@ -1,0 +1,44 @@
+# QuickProxy Server Configuration
+# Version 1
+
+# Listen address for the QuickProxy daemon
+# Must be a local address for security
+listen_address = "127.0.0.1:3358"
+
+# Target host for backend connections
+# Must be 127.0.0.1 or localhost
+target_host = "127.0.0.1"
+
+# List of domain suffixes to accept
+# Hostnames must end with one of these domains
+# The final dash-separated numeric component is the target port
+domains = [
+  "quickproxy.webdemos.online",
+  "quickproxy-ws.webdemos.online",
+]
+
+# Directory for per-application log files
+# Creates <app-name>-access.log and <app-name>-error.log for each app
+log_directory = "/var/log/quickproxy"
+
+# Allowed port range for dynamically proxied backends
+# Ports must be within this range
+minimum_port = 1024
+maximum_port = 65535
+
+# HTTP request header reading timeout
+read_header_timeout = "10s"
+
+# Idle connection timeout
+idle_timeout = "120s"
+
+# Graceful shutdown timeout
+shutdown_timeout = "15s"
+
+# Preserve the original frontend Host header when proxying
+# Disable this if applications don't need the full hostname
+preserve_original_host = true
+
+# Trust X-Forwarded-* headers from the frontend proxy
+# Only enable if the daemon is bound to loopback
+trust_forwarded_headers = true
